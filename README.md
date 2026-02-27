@@ -28,10 +28,10 @@ Os dados abaixo refletem a execução do algoritmo para $N = 100.000$:
 
 | Cenário de Teste | Tempo de Execução ($\mu s$) | Tempo em Segundos (aprox.) |
 | :--- | :--- | :--- |
-| **1. Melhor Caso** | `1.047,00` | ~0.001 s |
-| **2. Meio Ordenado (50%)** | `19.968.137,70` | ~19,96 s |
-| **3. Caso Aleatório** | `21.267.639,30` | ~21,26 s |
-| **4. Pior Caso (Invertido)** | `41.118.148,90` | ~41,11 s |
+| **1. Melhor Caso** | `996,70` | ~0.001 s |
+| **2. Meio Ordenado (50%)** | `19.695.453,40` | ~19,69 s |
+| **3. Caso Aleatório** | `20.203.372,20` | ~20,20 s |
+| **4. Pior Caso (Invertido)** | `40.323.866,70` | ~40,32 s |
 
 
 
