@@ -55,7 +55,7 @@ int main() {
     vector<int> v_meio = v_base;
     auto rd = mt19937{random_device{}()};
     // Embaralha apenas do índice 50 até o final
-    shuffle(v_meio.begin() + 50, v_meio.end(), rd);
+    shuffle(v_meio.begin() + TAM/2, v_meio.end(), rd);
     medir_caso("2. Meio Ordenado (50%)", v_meio);
 
     // 3. Caso Aleatório: Tudo embaralhado
