@@ -4,7 +4,8 @@
 
 using namespace std;
 
-#define MAX_SIZE 10
+#define MAX_SIZE 1000
+
 //Função quick_sort passa apenas a lista
 void quick_sort(vector <int> &lista);
 void quick_sort(vector <int> &lista, int start_position, int end_position);
