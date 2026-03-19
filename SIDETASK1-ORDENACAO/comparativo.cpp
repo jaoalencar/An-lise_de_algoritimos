@@ -1,7 +1,21 @@
+/*RASCUNHO
+Apartir de 1000 posições o mergesort começou a mostar valores (como: 2,5123ms) enquanto os outro continuavam com 0ms para ordenar.
+Apartir do 10000 posições esses valores foram obtidos:
+    Tempo para ordenar por heapsort: 4.1902ms
+    Tempo para ordenar por mergesort: 7.4876ms
+    Tempo para ordenar por quicksort: 2.1582ms
+Apartir do 1000000 posições esses valores foram obtidos:
+    Tempo para ordenar por heapsort: 630.461ms
+    Tempo para ordenar por mergesort: 962.198ms
+    Tempo para ordenar por quicksort: 289.323ms
+*/
+
 #include <iostream>
 #include <chrono>
+#include <random>
 #include <vector>
-//#include <algorithm>
+
+#define MAX 1000000
 
 using namespace std;
 
@@ -9,6 +23,9 @@ using namespace std;
 struct vetor : vector <int>{
     //vetor é um vector com metodos incrementados
     using vector <int>::vector;
+    
+    //Contrutor: quando comparado com um vector recebe todos os valores dele
+    vetor(const vector<int>& v) : vector<int>(v) {}
     
     //Métodos de ordenação
     void mergesort(){
@@ -137,12 +154,41 @@ private:
 
 //FUNÇÃO PRINCIAL
 int main(){
-    vetor lista = {3, 1, 5, 3};
-    cout << "Antes da ordenacao: " <<  endl;
-    lista.show();
-    lista.heapsort();
-    cout << "Pos ordenacao: " << endl;
-    lista.show();
+    //Criando aleatoriedade
+    random_device rd;
+    mt19937 gerador(rd());
+    uniform_int_distribution <int> distribuicao(0, MAX);
+  
+    //Criando o vetor padrão, para comparar com os outros
+    vector <int> standard (MAX);
+    for(int &i: standard) i = distribuicao(gerador); //povoa aleatoriamente o vector padrão
 
+    //Atribui o vector padrão aos vetores
+    vetor heapsort_array = standard;
+    vetor mergesort_array = standard;
+    vetor quicksort_array = standard;
+    
+    //-------------------------------------------
+    //Analisando as corridas de desempenho
+    //HEAPSORT
+    auto start = chrono::high_resolution_clock::now();
+    heapsort_array.heapsort();
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration <double, milli> t_heap = end - start;
+    cout << "Tempo para ordenar por heapsort: " << t_heap.count() << endl;
+
+    //MERGESORT
+    start = chrono::high_resolution_clock::now();
+    mergesort_array.mergesort();
+    end = chrono::high_resolution_clock::now();
+    chrono::duration <double, milli> t_merge = end - start;
+    cout << "Tempo para ordenar por mergesort: " << t_merge.count() << endl;
+    
+    //QUICKSORT
+    start = chrono::high_resolution_clock::now();
+    quicksort_array.quicksort();
+    end = chrono::high_resolution_clock::now();
+    chrono::duration <double, milli> t_quick = end - start;
+    cout << "Tempo para ordenar por quicksort: " << t_quick.count() << endl;
     return 0;
 }
