@@ -21,6 +21,8 @@ struct vetor {
         }
         cout << endl;
     }
+
+    //OPERAÇÕES INTERNAS, ONDE REALMENTE OCORRE A LÓGICA DE ORDENAÇÃO
 private:
     void mergesort(vector <int> &array){
         //STOP CONDITION
@@ -87,7 +89,7 @@ int main(){
     lista.array = {1, 4, 9, 2, 6, 4, 3, 8};
     cout << "Antes da ordenacao: " <<  endl;
     lista.show();
-    lista.mergesort();
+    lista.quicksort();
     cout << "Pos ordenacao: " << endl;
     lista.show();
     return 0;
